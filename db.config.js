@@ -2,13 +2,13 @@ module.exports = {
 
 HOST: "localhost",
 
-USER: "root",
+USER: "danielcalvillo",
 
-PASSWORD: "1234",
+PASSWORD: "eco410",
 
-DB: "mysql",
+DB: "danielcalvillo",
 
-dialect: "mysql",
+dialect: "postgres",
 
 pool: {
 

@@ -1,23 +1,20 @@
-const dbConfig = require("../db.config.js");
+require('dotenv').config()
+const Sequelize = require('sequelize');
 
-const Sequelize = require("sequelize");
-const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
-  host: dbConfig.HOST,
-  dialect: dbConfig.dialect,
- 
-  pool: {
-    max: dbConfig.pool.max,
-    min: dbConfig.pool.min,
-    acquire: dbConfig.pool.acquire,
-    idle: dbConfig.pool.idle
-  }
-});
+const sequelize = new Sequelize('danielcalvillo', null, null, {
+    dialect: 'postgres',
+    server: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    dialectOptions: {
+        authentication: {
+          type: 'default',
+          options: {
+            encrypt: true,
+            userName: process.env.DB_USER,
+            password: process.env.DB_PASS
+          }
+        },
+      }
+  })
 
-const db = {};
-
-db.Sequelize = Sequelize;
-db.sequelize = sequelize;
-
-
-
-module.exports = db;
+module.exports = sequelize
